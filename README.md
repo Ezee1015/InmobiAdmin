@@ -4,14 +4,19 @@ InmobiAdmin es un software de Administración para Inmobiliarias Argentinas que 
 
 ## Screenshots
 
+Menu Principal:
 ![Menu Principal](ScreenShots/Principal.png)
 
+Menu Agregar:
 ![Menu Agregar](ScreenShots/Agregar.png)
 
+Menu Cobrar:
 ![Menu de Cobros](ScreenShots/Cobrar.png)
 
+Menu Pagar:
 ![Menu de Pagos](ScreenShots/Pagar.png)
 
+Menu Avanzado:
 ![Menu Avanzado](ScreenShots/Avanzado.png)
 
 ## Requisitos

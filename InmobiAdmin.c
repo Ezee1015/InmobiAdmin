@@ -2677,83 +2677,83 @@ int CargarArchivoEnStruct (int BoolRevisarContratosExpirados) { //BoolRevisarCon
 
 
 
-        if (Dispositivo==1) printf("   +-----------------+---------------------------------+-----------------------------------+--------------------------+\n");
-        if (Dispositivo==1) printf("   |    N  Legajo    |            Titular              |              Inquilino            |         Direccion        |\n");
-        if (Dispositivo==1) printf("   +-----------------+---------------------------------+-----------------------------------+--------------------------+\n");
+    /* if (Dispositivo==1) printf("   +-----------------+---------------------------------+-----------------------------------+--------------------------+\n"); */
+    /* if (Dispositivo==1) printf("   |    N  Legajo    |            Titular              |              Inquilino            |         Direccion        |\n"); */
+    /* if (Dispositivo==1) printf("   +-----------------+---------------------------------+-----------------------------------+--------------------------+\n"); */
 
 
         for (x=0;x<Pos;x++) {
-        if(Inquilino[x].Legajo!=0) {
-                if(BoolRevisarContratosExpirados==0) {
-                    int TiempoDeContrato=(AnioActual()-Inquilino[x].FechaInicio.Anio)*12+(MesActual()-Inquilino[x].FechaInicio.Mes);
-                    int MesesContrato;
-                    int Eleccion;
-                    switch(Inquilino[x].TipoContrato) {
-                        case 1 :
-                            MesesContrato=0.5*12;
-                        break;
-                        case 2 :
-                            MesesContrato=1*12;
-                        break;
-                        case 3 :
-                            MesesContrato=2*12;
-                        break;
-                        case 4 :
-                            MesesContrato=3*12;
-                        break;
-                    }
-                    if (TiempoDeContrato>(MesesContrato+3)) { // SI EL TIEMPO DESDE QUE SE CREO EL CONTRATO ES MAYOR A LOS MESES DE CONTRATO PASADOS 90 DIAS, LO BORRA SIN PREGUNTAR
-                        Exportar_Inquilino(x);
-                        Eliminar_Registro(x);
-                        CargarArchivoEnStruct(0);
-                        return 0;
-                    }
-                    if (TiempoDeContrato>MesesContrato) { // SI EL TIEMPO DESDE QUE SE CREO EL CONTRATO ES MAYOR A LOS MESES DE CONTRATO, PREGUNTAR
-                        if(SO==1) Limpiar_Pantalla(); else Limpiar_Pantalla_Win();
-                        Insertar_Fecha_en_Esquina();
-                        printf("\n\n\t Se ha Detectado un Contrato que ya ha vencido. ¿Que Desea Hacer?");
-                        printf("\n\t Informacion del Contrato:");
-                        printf("\n\t\tN  Legajo:         %ld", Inquilino[x].Legajo);
-                        printf("\n\t\tDireccion:         %s", Inquilino[x].DireccionLocal);
-                        printf("\n\t\tTitular:           %s", Inquilino[x].NombreTitular);
-                        printf("\n\t\tInquilino:         %s", Inquilino[x].NombreInquilino);
-                        printf("\n\t\tFecha de Inicio:   %i/%i/%i", Inquilino[x].FechaInicio.Dia, Inquilino[x].FechaInicio.Mes, Inquilino[x].FechaInicio.Anio);
-                        printf("\n\t\tFecha de Recesion: %i/%i/%i", Inquilino[x].FechaRecesion.Dia, Inquilino[x].FechaRecesion.Mes, Inquilino[x].FechaRecesion.Anio);
-
-                        printf(ANSI_COLOR_CYAN"\n\n\t\t\t 1.- Archivar \\\\ 2.- Archivar y Crear Nuevo  \\\\ 3.- No Hacer Nada"ANSI_COLOR_RESET);
-                        printf("\n\n\t Ingrese ( 1 , 2 o 3 ) > ");
-                        scanf("%i", &Eleccion);
-
-                        switch (Eleccion) {
+            if(Inquilino[x].Legajo!=0) {
+                    if(BoolRevisarContratosExpirados==0) {
+                        int TiempoDeContrato=(AnioActual()-Inquilino[x].FechaInicio.Anio)*12+(MesActual()-Inquilino[x].FechaInicio.Mes);
+                        int MesesContrato;
+                        int Eleccion;
+                        switch(Inquilino[x].TipoContrato) {
                             case 1 :
-                                Exportar_Inquilino(x);
-                                Eliminar_Registro(x);
-                                CargarArchivoEnStruct(0);
-                                return 0;
+                                MesesContrato=0.5*12;
                             break;
                             case 2 :
-                                Exportar_Inquilino(x);
-                                Eliminar_Registro(x);
-                                CargarArchivoEnStruct(1);
-                                Menu_Agregar();
-                                CargarArchivoEnStruct(0);
-                                return 0;
+                                MesesContrato=1*12;
                             break;
                             case 3 :
-                                printf("\n\n\t Tenga en Cuenta Que el Registro de Este Alquiler sera Archivado Automaticamente a los 3 Meses de la Fecha de Recesion.");
-                                printf("\n\n\t\t Presione Para Continuar...");
-                                LimpiarBuffer();
-                                getch();
+                                MesesContrato=2*12;
+                            break;
+                            case 4 :
+                                MesesContrato=3*12;
                             break;
                         }
+                        if (TiempoDeContrato>(MesesContrato+3)) { // SI EL TIEMPO DESDE QUE SE CREO EL CONTRATO ES MAYOR A LOS MESES DE CONTRATO PASADOS 90 DIAS, LO BORRA SIN PREGUNTAR
+                            Exportar_Inquilino(x);
+                            Eliminar_Registro(x);
+                            CargarArchivoEnStruct(0);
+                            return 0;
+                        }
+                        if (TiempoDeContrato>MesesContrato) { // SI EL TIEMPO DESDE QUE SE CREO EL CONTRATO ES MAYOR A LOS MESES DE CONTRATO, PREGUNTAR
+                            if(SO==1) Limpiar_Pantalla(); else Limpiar_Pantalla_Win();
+                            Insertar_Fecha_en_Esquina();
+                            printf("\n\n\t Se ha Detectado un Contrato que ya ha vencido. ¿Que Desea Hacer?");
+                            printf("\n\t Informacion del Contrato:");
+                            printf("\n\t\tN  Legajo:         %ld", Inquilino[x].Legajo);
+                            printf("\n\t\tDireccion:         %s", Inquilino[x].DireccionLocal);
+                            printf("\n\t\tTitular:           %s", Inquilino[x].NombreTitular);
+                            printf("\n\t\tInquilino:         %s", Inquilino[x].NombreInquilino);
+                            printf("\n\t\tFecha de Inicio:   %i/%i/%i", Inquilino[x].FechaInicio.Dia, Inquilino[x].FechaInicio.Mes, Inquilino[x].FechaInicio.Anio);
+                            printf("\n\t\tFecha de Recesion: %i/%i/%i", Inquilino[x].FechaRecesion.Dia, Inquilino[x].FechaRecesion.Mes, Inquilino[x].FechaRecesion.Anio);
+
+                            printf(ANSI_COLOR_CYAN"\n\n\t\t\t 1.- Archivar \\\\ 2.- Archivar y Crear Nuevo  \\\\ 3.- No Hacer Nada"ANSI_COLOR_RESET);
+                            printf("\n\n\t Ingrese ( 1 , 2 o 3 ) > ");
+                            scanf("%i", &Eleccion);
+
+                            switch (Eleccion) {
+                                case 1 :
+                                    Exportar_Inquilino(x);
+                                    Eliminar_Registro(x);
+                                    CargarArchivoEnStruct(0);
+                                    return 0;
+                                break;
+                                case 2 :
+                                    Exportar_Inquilino(x);
+                                    Eliminar_Registro(x);
+                                    CargarArchivoEnStruct(1);
+                                    Menu_Agregar();
+                                    CargarArchivoEnStruct(0);
+                                    return 0;
+                                break;
+                                case 3 :
+                                    printf("\n\n\t Tenga en Cuenta Que el Registro de Este Alquiler sera Archivado Automaticamente a los 3 Meses de la Fecha de Recesion.");
+                                    printf("\n\n\t\t Presione Para Continuar...");
+                                    LimpiarBuffer();
+                                    getch();
+                                break;
+                            }
+                        }
                     }
+
+
+
+        /* Dibujar_Registro(x, 1); //PONGO 1 PARA QUE NO DIBUJA LA FLECHITA DE SELECCION */
+        /* if (Dispositivo==1) printf("   +-----------------+---------------------------------+-----------------------------------+--------------------------+\n"); */
                 }
-
-
-
-    /* Dibujar_Registro(x, 1); //PONGO 1 PARA QUE NO DIBUJA LA FLECHITA DE SELECCION */
-    /* if (Dispositivo==1) printf("   +-----------------+---------------------------------+-----------------------------------+--------------------------+\n"); */
-            }
         }
     }
     return 0;
@@ -2853,7 +2853,7 @@ int main () {
     mkdir("Cobros", S_IRWXU);
     mkdir("Contratos Vencidos", S_IRWXU);
     CargarArchivoEnStruct(0);
-    getch();
+    /* getch(); */
     Menu_Principal();
     return 0;
 }

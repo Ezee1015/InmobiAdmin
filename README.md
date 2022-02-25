@@ -2,6 +2,8 @@
 ## ¿Que es?
 InmobiAdmin es un software de Administración para Inmobiliarias Argentinas que administra los Cobros de los Inquilinos y Pagos de los Propietarios de las propiedades, calculando los Intereses, Pagos, Descuentos, etc.
 
+## Screenshots
+
 ![Menu Principal](ScreenShots/Principal.png)
 
 ![Menu Agregar](ScreenShots/Agregar.png)

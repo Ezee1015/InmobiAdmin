@@ -20,7 +20,7 @@ Para poder ejecutarlo puede:
 
 - Compilar el programa (Dentro de la Carpeta con el Codigo Fuente) ejecutando `gcc InmobiAdmin.c -o InmobiAdmin`.
 
-- Descargar el [Binario portable] (<!-- HACER -->) y Ejecutarlo.
+- Descargar el [Binario portable](<!-- HACER -->) y Ejecutarlo.
 
 ## Eso es Todo!
 Mucha gracias por interesarse en este programa. Este programa está licenciado bajo GNU GPL V3.

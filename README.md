@@ -29,5 +29,10 @@ Para poder ejecutarlo puede:
 
 - (Solo para GNU/Linux x86_64) Descargar el Codigo fuente y Ejecutar el Binario (El binario se llama "InmobiAdmin_Linux_X86-64").
 
+# Desarrollo Pendiente
+Lo que queda por realizar:
+* [ ] Agregar un Comprobador de Largo de Caracteres del DNI
+* [ ] Agregar una Opcion de Exportar Historial Inquilino en Avanzado
+
 ## Eso es Todo!
 Mucha gracias por interesarse en este programa. Este programa está licenciado bajo GNU GPL V3.

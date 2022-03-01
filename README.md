@@ -31,7 +31,7 @@ Para poder ejecutarlo puede:
 
 # Desarrollo Pendiente
 Lo que queda por realizar:
-* [ ] Agregar un Comprobador de Largo de Caracteres del DNI
+* [x] Agregar un Comprobador de Largo de Caracteres del DNI
 * [ ] Agregar una Opcion de Exportar Historial Inquilino en Avanzado
 
 ## Eso es Todo!

@@ -508,7 +508,10 @@ int Menu_Agregar () {
         }
 
     printf("        DNI del Titular: ");
-        scanf("%ld", &Inquilino[Pos].DNITitular);
+        do {
+            scanf("%ld", &Inquilino[Pos].DNITitular);
+            if((Inquilino[Pos].DNITitular/10000000)<1 || (Inquilino[Pos].DNITitular/100000000)>=1) printf(ANSI_COLOR_RED"        DNI Ingresado Incorrrecto. Intente de Vuelta: "ANSI_COLOR_RESET);
+        } while((Inquilino[Pos].DNITitular/10000000)<1 || (Inquilino[Pos].DNITitular/100000000)>=1);
 
 
     printf("        Direccion del Titular: ");
@@ -525,7 +528,10 @@ int Menu_Agregar () {
         }
 
     printf("        DNI del Inquilino: ");
-        scanf("%ld", &Inquilino[Pos].DNIInquilino);
+        do {
+            scanf("%ld", &Inquilino[Pos].DNIInquilino);
+            if((Inquilino[Pos].DNIInquilino/10000000)<1 || (Inquilino[Pos].DNIInquilino/100000000)>=1) printf(ANSI_COLOR_RED"        DNI Ingresado Incorrrecto. Intente de Vuelta: "ANSI_COLOR_RESET);
+        } while((Inquilino[Pos].DNIInquilino/10000000)<1 || (Inquilino[Pos].DNIInquilino/100000000)>=1);
 
 
     printf("        Nombre y Apellido de la Garantia: ");
@@ -536,7 +542,10 @@ int Menu_Agregar () {
         }
 
     printf("        DNI de la Garantia: ");
-        scanf("%ld", &Inquilino[Pos].GarantiaInquilino.DNI);
+        do {
+            scanf("%ld", &Inquilino[Pos].GarantiaInquilino.DNI);
+            if((Inquilino[Pos].GarantiaInquilino.DNI/10000000)<1 || (Inquilino[Pos].GarantiaInquilino.DNI/100000000)>=1) printf(ANSI_COLOR_RED"        DNI Ingresado Incorrrecto. Intente de Vuelta: "ANSI_COLOR_RESET);
+        } while((Inquilino[Pos].GarantiaInquilino.DNI/10000000)<1 || (Inquilino[Pos].GarantiaInquilino.DNI/100000000)>=1);
 
     printf("        Direccion de la Garantia: ");
         LimpiarBuffer();
@@ -2244,7 +2253,10 @@ int Modificar_Inquilino (int Legajo) {
         case 4 :
             printf("\n\n\t\tContenido del Campo: %ld", Inquilino[Pos].DNITitular);
             printf("\n\tIngrese el Nuevo Contenido del Campo > ");
-                scanf("%ld", &Inquilino[Pos].DNITitular);
+                do {
+                    scanf("%ld", &Inquilino[Pos].DNITitular);
+                    if((Inquilino[Pos].DNITitular/10000000)<1 || (Inquilino[Pos].DNITitular/100000000)>=1) printf(ANSI_COLOR_RED"        DNI Ingresado Incorrrecto. Intente de Vuelta: "ANSI_COLOR_RESET);
+                }while((Inquilino[Pos].DNITitular/10000000)<1 || (Inquilino[Pos].DNITitular/100000000)>=1);
 
         break;
         case 5 :
@@ -2266,7 +2278,11 @@ int Modificar_Inquilino (int Legajo) {
         case 7 :
             printf("\n\n\t\tContenido del Campo: %ld", Inquilino[Pos].DNIInquilino);
             printf("\n\tIngrese el Nuevo Contenido del Campo > ");
-                scanf("%ld", &Inquilino[Pos].DNIInquilino);
+                do {
+                    scanf("%ld", &Inquilino[Pos].DNIInquilino);
+                    if((Inquilino[Pos].DNIInquilino/10000000)<1 || (Inquilino[Pos].DNIInquilino/100000000)>=1) printf(ANSI_COLOR_RED"        DNI Ingresado Incorrrecto. Intente de Vuelta: "ANSI_COLOR_RESET);
+                } while((Inquilino[Pos].DNIInquilino/10000000)<1 || (Inquilino[Pos].DNIInquilino/100000000)>=1);
+
         break;
         case 8 :
             printf("\n\n\t\tContenido del Campo: %s", Inquilino[Pos].GarantiaInquilino.NombreGarant);
@@ -2279,7 +2295,10 @@ int Modificar_Inquilino (int Legajo) {
         case 9 :
             printf("\n\n\t\tContenido del Campo: %ld", Inquilino[Pos].GarantiaInquilino.DNI);
             printf("\n\tIngrese el Nuevo Contenido del Campo > ");
-                scanf("%ld", &Inquilino[Pos].GarantiaInquilino.DNI);
+                do {
+                    scanf("%ld", &Inquilino[Pos].GarantiaInquilino.DNI);
+                    if((Inquilino[Pos].GarantiaInquilino.DNI/10000000)<1 || (Inquilino[Pos].GarantiaInquilino.DNI/100000000)>=1) printf(ANSI_COLOR_RED"        DNI Ingresado Incorrrecto. Intente de Vuelta: "ANSI_COLOR_RESET);
+               } while((Inquilino[Pos].GarantiaInquilino.DNI/10000000)<1 || (Inquilino[Pos].GarantiaInquilino.DNI/100000000)>=1);
         break;
         case 10 :
             printf("\n\n\t\tContenido del Campo: %s", Inquilino[Pos].GarantiaInquilino.DireccionGarant);

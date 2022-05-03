@@ -433,8 +433,11 @@ int Exportar_Inquilino(int Pos) {
 
     for (i=0;i<12;i++) {
 
-        int NumeroMes=(((TiempoDesdeUltimoPago-i)%12)+MesActual())%12;
+        int NumeroMes=((MesActual()-TiempoDesdeUltimoPago-i))%12; 
+        /* int NumeroMes=(((TiempoDesdeUltimoPago-i)%12)+MesActual())%12; */ // COMENTADO PQ DABA ERRORES EN EL MENU AVANZADO EXPORTAR INQUILINO DEVOLVIENDO UNA FECHA DE 3 MESES DESPUES A LA ACTUAL
+        printf("%d - %d + %d ) %12\n", TiempoDesdeUltimoPago, i, MesActual());
         if(NumeroMes==0) NumeroMes=12;
+        else if (NumeroMes<0) NumeroMes=12+NumeroMes;
         fprintf(Exportar, "\n\t\t    %2i", NumeroMes);
 
         int NumeroAnio;
@@ -2226,6 +2229,7 @@ int Modificar_Inquilino (int Legajo) {
 
     printf("\n\n\t¿Cual es su Eleccion? > ");
     scanf("%i", &Eleccion);
+    getch();
 
     switch (Eleccion) {
         case 1 :
@@ -2494,11 +2498,12 @@ int Menu_Modificar () {
     printf(ANSI_COLOR_CYAN"\n\n\t\t 1.- Modificar Un Inquilino"ANSI_COLOR_RESET);
     printf(ANSI_COLOR_CYAN"\n\t\t 2.- Relizar un Backup"ANSI_COLOR_RESET);
     printf(ANSI_COLOR_CYAN"\n\t\t 3.- Ver Informacion Completa de un Inquilino"ANSI_COLOR_RESET);
+    printf(ANSI_COLOR_CYAN"\n\t\t 4.- Exportar Historial de un Inquilino"ANSI_COLOR_RESET);
     printf(ANSI_COLOR_CYAN"\n\t\t ESC.- Salir al Menu Anterior\n\n"ANSI_COLOR_RESET);
     printf("\n\n\t Ingrese su eleccion > ");
                     fflush(stdin);
                     Caract=getch();
-                    while (Caract=='\n' || Caract>'3' || Caract<'1') {
+                    while (Caract=='\n' || Caract>'4' || Caract<'1') {
                         fflush(stdin);
                         if (Caract==27) { Menu_Principal(); return 0;}
                         Caract=getch();
@@ -2533,7 +2538,27 @@ int Menu_Modificar () {
         if (CampoBusqueda==5) {
             if(Eleccion==1) Modificar_Inquilino(Listar_Inquilinos());
             if(Eleccion==3) Informacion_Inquilino(Listar_Inquilinos());
-            return 0;}
+            if(Eleccion==4) {
+                int leg=Listar_Inquilinos();
+                for (int x=0;x<10000;x++) {
+                    if(Inquilino[x].Legajo == leg) {
+                        Exportar_Inquilino(x);
+                        char Archivo [100], SystemOpen[150];
+                        sprintf(Archivo, "Contratos Vencidos/%s - %s - %i-%i.txt",Inquilino[x].DireccionLocal,Inquilino[x].NombreInquilino,Inquilino[x].FechaInicio.Mes, Inquilino[x].FechaInicio.Anio /*PONER ACA LOS CAMPOS*/);
+                        sprintf(SystemOpen,"xdg-open '%s' > /dev/null", Archivo);
+                        system(SystemOpen);
+                        sprintf(SystemOpen,"notepad '%s'", Archivo);
+                        system(SystemOpen);
+                        printf("\n\n\n\nPresione Enter Para Continuar...\n\n\n");
+                        LimpiarBuffer();
+                        getch();
+                    }
+                    Menu_Principal();
+                    return 0;
+                }
+            }
+            return 0;
+        }
 
         if(SO==1) Limpiar_Pantalla(); else Limpiar_Pantalla_Win();
         Insertar_Fecha_en_Esquina();
@@ -2608,6 +2633,25 @@ int Menu_Modificar () {
 
             if(Eleccion==1) Modificar_Inquilino(SeleccionBusqueda(PatronBusquedaShow, CampoBusqueda, Resultado));
             if(Eleccion==2) Informacion_Inquilino(SeleccionBusqueda(PatronBusquedaShow, CampoBusqueda, Resultado));
+            if(Eleccion==4) {
+                int leg = SeleccionBusqueda(PatronBusquedaShow, CampoBusqueda, Resultado);
+                for (int x=0;x<10000;x++) {
+                    if(Inquilino[x].Legajo == leg) {
+                        Exportar_Inquilino(x);
+                        char Archivo [100], SystemOpen[150];
+                        sprintf(Archivo, "Contratos Vencidos/%s - %s - %i-%i.txt",Inquilino[x].DireccionLocal,Inquilino[x].NombreInquilino,Inquilino[x].FechaInicio.Mes, Inquilino[x].FechaInicio.Anio /*PONER ACA LOS CAMPOS*/);
+                        sprintf(SystemOpen,"xdg-open '%s' > /dev/null", Archivo);
+                        system(SystemOpen);
+                        sprintf(SystemOpen,"notepad '%s'", Archivo);
+                        system(SystemOpen);
+                        printf("\n\n\n\nPresione Enter Para Continuar...\n\n\n");
+                        LimpiarBuffer();
+                        getch();
+                    }
+                    Menu_Principal();
+                    return 0;
+                }
+            }
     }
 
 

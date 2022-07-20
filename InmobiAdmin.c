@@ -433,9 +433,9 @@ int Exportar_Inquilino(int Pos) {
 
     for (i=0;i<12;i++) {
 
-        int NumeroMes=((MesActual()-TiempoDesdeUltimoPago-i))%12; 
+        int NumeroMes=((MesActual()-TiempoDesdeUltimoPago-i))%12;
         /* int NumeroMes=(((TiempoDesdeUltimoPago-i)%12)+MesActual())%12; */ // COMENTADO PQ DABA ERRORES EN EL MENU AVANZADO EXPORTAR INQUILINO DEVOLVIENDO UNA FECHA DE 3 MESES DESPUES A LA ACTUAL
-        printf("%d - %d + %d ) %12\n", TiempoDesdeUltimoPago, i, MesActual());
+        /* printf("%d - %d + %d ) %12\n", TiempoDesdeUltimoPago, i, MesActual()); */
         if(NumeroMes==0) NumeroMes=12;
         else if (NumeroMes<0) NumeroMes=12+NumeroMes;
         fprintf(Exportar, "\n\t\t    %2i", NumeroMes);
@@ -443,7 +443,7 @@ int Exportar_Inquilino(int Pos) {
         int NumeroAnio;
         int MesUltimoPago=(24+(MesActual()-TiempoDesdeUltimoPago))%12;
         if(MesUltimoPago==0) MesUltimoPago=12;
-        if(NumeroMes>MesUltimoPago) NumeroAnio=AnioActual()-(TiempoDesdeUltimoPago/12)-1;
+        if(NumeroMes>MesUltimoPago) NumeroAnio=AnioActual()-(TiempoDesdeUltimoPago/12)-1; // Revisar porque esta cuenta me parece medio insegura
         else NumeroAnio=AnioActual()-(TiempoDesdeUltimoPago/12);
         fprintf(Exportar, "/%i ", NumeroAnio);
 
